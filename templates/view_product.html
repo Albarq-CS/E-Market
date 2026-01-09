@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        <h2 class="mb-0"><i class="fas fa-eye"></i> Product Details</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            {% if product.image %}
+            <img
+              src="{{ product.image.url }}"
+              alt="{{ product.prodName }}"
+              class="img-fluid rounded shadow"
+              style="max-height: 300px"
+            />
+            {% else %}
+            <img
+              src="{% static 'images/products.jpg' %}"
+              alt="{{ product.prodName }}"
+              class="img-fluid rounded shadow"
+              style="max-height: 300px"
+            />
+            {% endif %}
+          </div>
+          <div class="col-md-6">
+            <h3 class="card-title mb-4">{{ product.prodName }}</h3>
+            <div class="mb-3">
+              <h4 class="text-success">
+                <i class="fas fa-dollar-sign"></i> ${{ product.Price }}
+              </h4>
+            </div>
+            <div class="mb-3">
+              <strong><i class="fas fa-truck"></i> Supplier:</strong> {{product.Suppliers.suppName }}
+            </div>
+            <div class="mb-3">
+              <strong><i class="fas fa-folder"></i> Category:</strong>
+              <span class="badge bg-secondary"
+                >{{ product.Category.catName }}</span
+              >
+            </div>
+            <div class="mb-3">
+              <strong><i class="fas fa-boxes"></i> Stock:</strong> {{product.Quantity }}
+            </div>
+            <div class="mt-4">
+              <a
+                href="{% url 'list_products' %}"
+                class="btn btn-primary btn-custom me-2"
+                ><i class="fas fa-arrow-left"></i> Back to Products</a
+              >
+
+              <a
+                href="{% url 'delete_product' product.pk %}"
+                class="btn btn-danger btn-custom"
+                ><i class="fas fa-trash"></i> Delete Product</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

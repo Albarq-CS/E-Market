@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h2 class="mb-0"><i class="fas fa-plus-circle"></i> Add New Product</h2>
+      </div>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="{{ form.prodName.id_for_label }}" class="form-label">Product Name</label>
+              {{ form.prodName }}
+              {% if form.prodName.errors %}<div class="text-danger">{{ form.prodName.errors }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.Price.id_for_label }}" class="form-label">Price</label>
+              {{ form.Price }}
+              {% if form.Price.errors %}<div class="text-danger">{{ form.Price.errors }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.Suppliers.id_for_label }}" class="form-label">Supplier</label>
+              {{ form.Suppliers }}
+              {% if form.Suppliers.errors %}<div class="text-danger">{{ form.Suppliers.errors }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.Category.id_for_label }}" class="form-label">Category</label>
+              {{ form.Category }}
+              {% if form.Category.errors %}<div class="text-danger">{{ form.Category.errors }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.Quantity.id_for_label }}" class="form-label">Quantity</label>
+              {{ form.Quantity }}
+              {% if form.Quantity.errors %}<div class="text-danger">{{ form.Quantity.errors }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.image.id_for_label }}" class="form-label">Product Image</label>
+              {{ form.image }}
+              {% if form.image.errors %}<div class="text-danger">{{ form.image.errors }}</div>{% endif %}
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success btn-custom btn-lg"><i class="fas fa-save"></i> Add Product</button>
+              <a href="{% url 'list_products' %}" class="btn btn-secondary btn-custom btn-lg ms-2"><i class="fas fa-arrow-left"></i> Back to Products</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
